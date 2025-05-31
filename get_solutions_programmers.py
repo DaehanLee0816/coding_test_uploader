@@ -1,4 +1,5 @@
 import time
+import sys
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -9,7 +10,7 @@ from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 from github import Github
 
-def get_solutions_programmers():
+def get_solutions_programmers(solved_num = 0):
     # GitHub 설정
     github_token = input("GitHub 토큰을 입력하세요: ")
     repo_name = input("GitHub 저장소 이름을 입력하세요 (예: coding-test-solutions): ")
@@ -40,6 +41,7 @@ def get_solutions_programmers():
     while True:
         try:
             # 문제 링크 수집
+            captured = False
             problems = driver.find_elements(By.CSS_SELECTOR, "a[href*='/learn/courses/30/lessons/']")
             print(problems)
             for elem in problems:
@@ -47,6 +49,12 @@ def get_solutions_programmers():
                 print(href)
                 if href and href not in problem_links:
                     problem_links.append(href)
+                
+                if solved_num > 0 and len(problem_links) >= solved_num:
+                    captured = True
+                    break
+            if captured:
+                break
             
             # 다음 페이지 버튼 클릭
             next_button = driver.find_element(By.CSS_SELECTOR, "button[aria-label='다음 페이지']")
@@ -126,4 +134,8 @@ def get_solutions_programmers():
     driver.quit()
 
 if __name__ == "__main__":
-    get_solutions_programmers()
+    if len(sys.argv) > 1:
+        solved_num = int(sys.argv[1])
+    else:
+        solved_num = 0
+    get_solutions_programmers(solved_num)

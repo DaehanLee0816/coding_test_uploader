@@ -38,3 +38,8 @@ python get_solutions_{site}.py
 - 코드를 작성했을 당시의 웹사이트 CSS구조를 기반으로 동작합니다.
 - GitHub 토큰은 필요한 권한(repo)이 있어야 합니다.
 - API 요청 제한에 주의하세요. 
+
+## 업데이트 내역
+- 25.06.01 : get_solutions_programmers.py의 argument로 solved_num을 받아서 최신 n개의 문제를 저장소에 업로드하는 방식으로 구조를 변경
+             예시 - python3 get_solutions_programmers.py 3 : 최신 작성한 3개의 문제를 저장소에 업로드
+             기존 사용법 : 인자를 주지않으면 전체 업로드
