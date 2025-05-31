@@ -40,6 +40,6 @@ python get_solutions_{site}.py
 - API 요청 제한에 주의하세요. 
 
 ## 업데이트 내역
-- 25.06.01 : get_solutions_programmers.py의 argument로 solved_num을 받아서 최신 n개의 문제를 저장소에 업로드하는 방식으로 구조를 변경
-             예시 - python3 get_solutions_programmers.py 3 : 최신 작성한 3개의 문제를 저장소에 업로드
+- 25.06.01 : get_solutions_programmers.py의 argument로 문제 idx를 받아서 특정 문제를 저장소에 업로드하는 동작 방식 추가
+             예시 - python3 get_solutions_programmers.py 258709 : https://school.programmers.co.kr/learn/courses/30/lessons/258709 문제풀이 업로드
              기존 사용법 : 인자를 주지않으면 전체 업로드
